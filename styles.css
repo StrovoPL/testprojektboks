@@ -17,6 +17,10 @@ html {
   html {
     scroll-behavior: auto;
   }
+
+  .hero-scroll {
+    animation: none;
+  }
 }
 
 * {
@@ -153,6 +157,7 @@ section {
 }
 
 .hero {
+  position: relative;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 48px;
@@ -166,6 +171,57 @@ section {
     radial-gradient(circle at right, rgba(182, 50, 34, 0.28), transparent 46%);
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 24px 66px rgba(0, 0, 0, 0.42);
+}
+.hero-scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: rgba(243, 237, 225, 0.9);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  z-index: 1;
+  animation: scrollHint 1.8s ease-in-out infinite;
+}
+
+.hero-scroll svg {
+  width: 28px;
+  height: 28px;
+}
+
+.hero-scroll path {
+  fill: none;
+  stroke: #ff7f71;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hero-scroll:hover {
+  color: #fff;
+}
+
+.hero-scroll:focus-visible {
+  outline: 3px solid rgba(182, 50, 34, 0.6);
+  outline-offset: 6px;
+  border-radius: 12px;
+}
+
+@keyframes scrollHint {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
+    opacity: 1;
+  }
 }
 
 .eyebrow {
@@ -829,62 +885,47 @@ button.btn {
   border: 0;
 }
 
-@media (max-width: 900px) {
-  .contact-card {
-    grid-template-columns: 1fr;
-    justify-items: start;
-  }
-
-  .contact-right {
-    justify-items: start;
-  }
-}
-
 
 .site-footer {
-  margin: 18px 6vw 24px;
-  padding: 24px clamp(18px, 3vw, 28px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  background:
-    radial-gradient(circle at top right, rgba(182, 50, 34, 0.18), transparent 42%),
-    linear-gradient(160deg, #11141b 0%, #0b0d12 100%);
-  color: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  margin: 18px 6vw 28px;
+  padding: 20px 22px;
   border-radius: 18px;
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.34);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  background: linear-gradient(145deg, rgba(10, 10, 12, 0.86), rgba(10, 10, 12, 0.7));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
 }
 
 .footer-left {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 14px;
-  min-width: 220px;
-}
-
-.footer-meta {
-  display: grid;
-  gap: 6px;
+  gap: 14px;
+  min-width: 260px;
 }
 
 .footer-logo {
   width: 56px;
   height: 56px;
   object-fit: contain;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  box-shadow: none;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.45));
+}
+
+.footer-meta {
+  display: grid;
+  gap: 2px;
+  color: rgba(243, 237, 225, 0.88);
+  font-size: 13px;
 }
 
 .footer-brand {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 20px;
+  font-size: 24px;
   letter-spacing: 1px;
   color: #fff;
+  line-height: 1;
 }
 
 .footer-right {
@@ -912,18 +953,6 @@ button.btn {
   background: rgba(182, 50, 34, 0.18);
   border-color: rgba(255, 127, 113, 0.52);
 }
-
-@keyframes floatIn {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(20px);
-  }
-}
-
 @media (max-width: 900px) {
   .site-header {
     flex-direction: column;
@@ -1055,6 +1084,10 @@ button.btn {
 }
 
 @media (max-width: 600px) {
+  .hero-scroll {
+    bottom: 12px;
+  }
+
   .hero-card-logo-wrap {
     min-height: 280px;
   }
@@ -1127,7 +1160,6 @@ button.btn {
     grid-template-columns: 1fr;
   }
 }
-
 .voucher-note {
   margin-top: 26px;
   background:
@@ -1232,3 +1264,13 @@ button.btn {
     width: 100%;
   }
 }
+
+
+
+
+
+
+
+
+
+
